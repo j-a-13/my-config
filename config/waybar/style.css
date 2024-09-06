@@ -1,17 +1,14 @@
 * {
     border: none;
     border-radius: 0;
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: PibotoLt, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    min-height: 0;
+    background: transparent;
+    font-family: PibotoLt, "Font Awesome 6 Free";
+    font-size: 14px;
 }
 
 window#waybar {
-    background-color: #111111;
-    color: #eeeeec;
-    transition-property: background-color;
-    transition-duration: .5s;
+    background-color: #212a33;
+    border-bottom: 1px solid #30363c;
 }
 
 window#waybar.hidden {
@@ -19,46 +16,87 @@ window#waybar.hidden {
 }
 
 #workspaces button {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    margin: 5px 5px 5px 0;
     padding: 0 5px;
-    background-color: transparent;
-    color: #eeeeec;
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
+    background-color: #5b8dbb;
+    color: #ffffff;
+    border-radius: 100%;
+    transition: 0.1s;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    box-shadow: inset 0 -3px #d3d7cf;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background-color: #4999e6;
+    border-radius: 100%;
 }
 
 #workspaces button.focused {
-    box-shadow: inset 0 -3px #eeeeec;
+    background-color: #4999e6;
+}
+
+#workspaces button.focused:hover {
+    background-color: #5b8dbb;
 }
 
 #workspaces button.urgent {
-    box-shadow: inset 0 -3px #cd0000;
+    background-color: #4999e6;
+}
+
+#workspaces button.urgent:hover {
+    background-color: #5b8dbb;
 }
 
 #mode {
-    box-shadow: inset 0 -3px #ed2929;
+	margin: 5px 5px 5px 0;
+	padding: 0 8px;
+	background-color: #4999e6;
+	border-radius: 17px;
+	color: #ffffff;
 }
 
+#mode:hover {
+	background-color: #5b8dbb;
+}
+
+#window {
+    margin: 5px;
+    padding: 0 2px;
+    color: #ffffff;
+}
+
+#custom-menu,
 #clock,
-#battery,
 #cpu,
 #memory,
 #temperature,
-#backlight,
 #network,
 #pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#mpd {
-    padding: 0 10px;
-    margin: 0 4px;
-    color: #eeeeec;
+#tray {
+    margin: 5px;
+    padding: 0 8px;
+    background-color: #5b8dbb;
+    border-radius: 17px;
+    color: #ffffff;
+    box-shadow: inherit;
+    transition: 0.1s;
+}
+
+#custom-menu:hover,
+#clock:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#network:hover,
+#pulseaudio:hover,
+#tray:hover {
+    margin: 5px;
+    padding: 0 8px;
+    background-color: #4999e6;
+    border-radius: 17px;
+    color: #ffffff;
 }
 
 #window,
@@ -76,38 +114,13 @@ window#waybar.hidden {
     margin-right: 0;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+tooltip {
+    background-color: #212a33;
+    border-radius: 10px;
+    border: 1px solid #30363c;
 }
 
-label:focus {
-    background-color: #ffffff;
+tooltip label {
+	color: #ffffff;
+	text-shadow: none;
 }
-
-#cpu {
-    box-shadow: inset 0 -3px #8ae234;
-}
-
-#memory {
-    box-shadow: inset 0 -3px #fce94f;
-}
-
-#network {
-    box-shadow: inset 0 -3px #729fcf;
-}
-
-#pulseaudio {
-    box-shadow: inset 0 -3px #ad7fa8;
-}
-
-#temperature {
-    box-shadow: inset 0 -3px #ff8800;
-}
-
-#tray {
-    box-shadow: inset 0 -3px #cd0000;
-}
-

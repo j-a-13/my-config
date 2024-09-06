@@ -1,3 +1,0 @@
-curl wttr.in/pencaitland.png > /tmp/weather.png
-feh -F /tmp/weather.png
-rm /tmp/weather.png

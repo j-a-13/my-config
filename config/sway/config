@@ -15,7 +15,9 @@ set $term lxterminal
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_run -fn "PibotoLt-10" -nb "#111111" -nf "#eeeeec" -sb "#729fcf" -sf "#111111" -g 4 -l 10 -x 0 -y 24 -z 600 -h 32
+#set $menu dmenu_run -fn "PibotoLt-10" -nb "#111111" -nf "#eeeeec" -sb "#729fcf" -sf "#111111" -g 4 -l 10 -x 0 -y 24 -z 600 -h 32
+
+set $menu tofi-drun | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
 include ~/.config/sway/config.d/*.conf
@@ -25,7 +27,6 @@ include /etc/sway/config.d/*
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/.local/share/wallpapers/background2.jpg fill
-
 
 input * xkb_options compose:ralt
 

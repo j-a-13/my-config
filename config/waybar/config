@@ -4,66 +4,101 @@
     "height": 24,
 
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
-    "modules-center": ["custom/clock"],
+    "modules-left": ["custom/menu", "sway/workspaces", "sway/mode", "sway/window"],
+    "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "tray"],
 
     // Modules configuration
+    "custom/menu": {
+	    "format": "Start  ",
+	    "tooltip": false,
+	    "on-click": "tofi-drun | xargs swaymsg exec --"
+    },
+
     "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
         "format": "{name}"
     },
+
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-
-    "custom/clock": {
-        "exec": "date +'%a %d %b %H:%M'",
-	"format": "{}",
-	"interval": 1
-    },
-
-
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false,
-	"on-click": "lxterminal -e htop"
-    },
-
-    "memory": {
-        "format": "{}% ",
+        "format": "{}",
 	"tooltip": false,
-	"on-click": "lxterminal -e htop"
+	"on-click": "swaymsg mode default",
     },
 
-    "temperature": {
-        "critical-threshold": 70,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": [""]
+    "sway/window": {
+	    "format": "{title}",
+	    "tooltip": true,
     },
 
-    "network": {
-        "format-wifi": "{essid} ",
-        "format-ethernet": "{ipaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ipaddr} ",
-	"tooltip": false
+    "clock": {
+	"format": "{:%A %d %B %H:%M}  ",
+	"interval": 60,
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode": "year",
+		"mode-mon-col": 3,
+		"on-scroll": 1,
+		"format": {
+			"months": "<span color='#5b8dbb'>{}</span>",
+			"days": "<span color='#cccccc'>{}</span>",
+			"weekdays":" <span color='#5b8dbb'><b>{}</b></span>",
+			"today": "<span color='#ffffff'><b><u>{}</u></b></span>"
+		}
+	},
+	"actions": {
+		"on-scroll-up": "shift_down",
+		"on-scroll-down": "shift_up",
+	}
+	//"interval": 1
     },
 
     "pulseaudio": {
         "scroll-step": 5,
-        "format": "{volume}% {icon}",
+        "format": "{volume}%  {icon}",
+	"format-bluetooth": "{volume}%  {icon}",
+	"format-muted": "{volume}%  ",
         "format-icons": {
             "default": ["", "", ""]
         },
-	"tooltip": false,
-        "on-click": "pavucontrol"
+	"tooltip-format": "{desc}",
+        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+	"on-click-middle": "pavucontrol"
     },
+
+    "network": {
+        "format-wifi": "{ipaddr}  ",
+        "format-ethernet": "{ipaddr}  ",
+        "format-disconnected": "Disconnected  ⚠",
+	"tooltip-format-wifi": "Connected to {essid}",
+	"tooltip-format-ethernet": "Connected to {gwaddr}",
+	"tooltip-format-disconnected": "Disconnected from network",
+	"on-click": "nm-connection-editor"
+    },
+
+    "cpu": {
+        "format": "{usage}%  ",
+	"interval": 1,
+        "tooltip": true,
+	"on-click": "lxterminal -e htop"
+    },
+
+    "memory": {
+        "format": "{}%  ",
+	"tooltip": true,
+	"tooltip-format": "Using {used:0.1f}GiB of {total:0.1f}GiB",
+	"on-click": "lxterminal -e htop"
+    },
+
+    "temperature": {
+        "format": "{temperatureC}°C  {icon}",
+	"tooltip-format": "CPU Temp: {temperatureC}°C",
+        "format-icons": [""]
+    },
+
+    "tray": {
+	"icon-size": 21,
+        "spacing": 10,
+	"shoow-passive-items": true
+    },
+
 }
